@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Books</h2>
+
+<table>
+	    <thead>
+	 	   <tr>
+	 	    <th width=189px>Title</th>
+			<th width=397px>Body</th>
+			<th clospan="3"></th>
+		   </tr>
+		</thead>
+		<% @books.each do |book| %>
+		<tbody>
+		<tr>
+	 		<td><%= book["title"] %></td>
+	 		<td><%= book["body"] %></td>
+	 		<td><%= link_to "Show", "/books/#{book.id}" %></td>
+            <td><%= link_to "Edit", "/books/#{book.id}/edit" %></td>
+            <td><%= link_to "Destroy", destroy_homes_path(book.id), method: :delete, "data-confirm" => "Are you sure?" %></td>
+		</tr>
+        </tbody>
+ <% end %>
+</table>
+
+
+<h2>New book</h2>
+
+<%= form_for(@book, url: '/books') do |f| %>
+
+<h5>Title</h5>
+    <%= f.text_field :title %>
+
+    <h5>Body</h5>
+    <%= f.text_area :body %>
+
+   <p><%= f.submit 'Create Book' %><p>
+
+<% end %>
+
+</body>
+</html>
+
+
